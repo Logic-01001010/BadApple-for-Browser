@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+
+	<title>Toy Box</title>
+	
+	<style type="text/css">
+		body{
+			background: black;
+			color: white;
+		}
+	</style>
+
+</head>
+	
+<body>
+
+	<script type="text/javascript">
+	
+		var xhr = new XMLHttpRequest();
+		var count = 0;
+		setInterval( ()=>{
+
+			xhr.open('GET', '/static/frames/frame-'+ count +'.txt');
+			xhr.send();
+
+
+			xhr.onreadystatechange = () => {
+                if (xhr.readyState === xhr.DONE) {
+                  if (xhr.status === 200) {
+                  	console.log( xhr.response )
+                    document.body.innerText = xhr.response ;
+
+                  }
+            }
+            
+            }
+
+            count++;
+			
+            if( count >= 4432 )
+            	count = 0;
+
+		}, 70 )
+
+
+
+	</script>
+
+		
+</body>
+
+</html>
